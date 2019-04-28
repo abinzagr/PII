@@ -12,7 +12,9 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-fbsdk": "^0.8.0",
     "react-native-image-picker": "^0.28.1",
-    "react-native-simple-time-picker": "^0.2.0"
+    "react-native-image-swiper": "0.0.8",
+    "react-native-simple-time-picker": "^0.2.0",
+    "react-native-swiper": "^1.5.14"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

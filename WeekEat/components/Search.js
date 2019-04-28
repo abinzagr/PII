@@ -9,19 +9,27 @@ import {
   Picker,
   Image,
   FlatList,
-  Button
+  ImageBackground
 } from "react-native";
 import { ListItem, SearchBar } from "react-native-elements";
 import Fire from "../Fire";
 import * as firebase from "firebase";
 import * as ImagePicker from "react-native-image-picker";
 import { Icon, CheckBox } from "react-native-elements";
+import Swiper from "react-native-swiper";
+import ImagesSwiper from "react-native-image-swiper";
+const customImg = [
+  "https://www.verytacos.com/oktThemes/ra138-s/images/principale.jpg",
+  "https://assets.afcdn.com/recipe/20160419/14652_w1024h768c1cx2420cy1872.jpg",
+  "https://assets.afcdn.com/recipe/20151003/20052_w1024h768c1cx480cy300.jpg"
+];
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
       foods: [],
-      displayFood: null
+      displayFood: null,
+      displayPicture: null
     };
     //this._displayDetailForFilm = this._displayDetailForFilm.bind(this)
   }
@@ -41,7 +49,8 @@ class Search extends Component {
           minutesD: child.val().selectedMinutesD,
           heureF: child.val().selectedHoursF,
           minutesF: child.val().selectedMinutesF,
-          ville: child.val().ville
+          ville: child.val().ville,
+          userId: child.val().userId
         });
       });
 
@@ -76,28 +85,60 @@ class Search extends Component {
     minutesD,
     heureF,
     minutesF,
-    ville
+    ville,
+    userId
   ) => {
-    this.props.navigation.navigate("FoodDetail", {
-      typePlat: typePlat,
-      titre: titre,
-      prix: prix,
-      nbCouvert: nbCouvert,
-      description: description,
-      conso: conso,
-      heureD: heureD,
-      minutesD: minutesD,
-      heureF: heureF,
-      minutesF: minutesF,
-      ville: ville
-    });
+    if (Fire.shared.uid !== userId)
+      this.props.navigation.navigate("FoodDetail", {
+        typePlat: typePlat,
+        titre: titre,
+        prix: prix,
+        nbCouvert: nbCouvert,
+        description: description,
+        conso: conso,
+        heureD: heureD,
+        minutesD: minutesD,
+        heureF: heureF,
+        minutesF: minutesF,
+        ville: ville
+      });
+    else
+      this.props.navigation.navigate("MyFoodDetail", {
+        typePlat: typePlat,
+        titre: titre,
+        prix: prix,
+        nbCouvert: nbCouvert,
+        description: description,
+        conso: conso,
+        heureD: heureD,
+        minutesD: minutesD,
+        heureF: heureF,
+        minutesF: minutesF,
+        ville: ville
+      });
   };
-
+  onChangePicture(item) {
+    if (item === Tacos) {
+      this.state.displayPicture = [
+        "https://upload.wikimedia.org/wikipedia/commons/f/ff/Image4_tacos_de_grenoble.png",
+        "https://assets.afcdn.com/recipe/20160419/14652_w1024h768c1cx2420cy1872.jpg",
+        "https://assets.afcdn.com/recipe/20151003/20052_w1024h768c1cx480cy300.jpg"
+      ];
+      console.log(this.state.displayPicture);
+    }
+    if (item === Couscous)
+      this.state.displayPicture = [
+        "http://www.canalvie.com/polopoly_fs/1.3774469!/image/Couscousgarni.jpg_gen/derivatives/max_568/Couscousgarni.jpg",
+        "https://assets.afcdn.com/recipe/20160419/14652_w1024h768c1cx2420cy1872.jpg",
+        "https://assets.afcdn.com/recipe/20151003/20052_w1024h768c1cx480cy300.jpg"
+      ];
+  }
   _searchFood() {}
 
   _searchTextInputChanged(text) {
     this.searchedText = text; //modification du texte recherché
   }
+
   render() {
     return (
       <View style={styles.main_container}>
@@ -129,7 +170,8 @@ class Search extends Component {
                     item.minutesD,
                     item.heureF,
                     item.minutesF,
-                    item.ville
+                    item.ville,
+                    item.userId
                   )
                 }
               >
@@ -137,9 +179,14 @@ class Search extends Component {
                   title={item.titre}
                   subtitle={
                     <View style={styles.container}>
-                      <Image
-                        source={require("../images/tacos.jpeg")}
-                        style={styles.image}
+                      <ImagesSwiper
+                        onChangePicture={item.titre}
+                        images={customImg}
+                        autoplay={true}
+                        autoplayTimeout={1.5}
+                        showsPagination={false}
+                        width={370}
+                        height={200}
                       />
                       <View style={styles.header_container_spot}>
                         <Image
@@ -193,6 +240,7 @@ class Search extends Component {
   }
 }
 const styles = StyleSheet.create({
+  wrapper: {},
   main_container: {
     marginTop: 20,
     flex: 1

@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  InputField
+  Alert
 } from "react-native";
 import * as firebase from "firebase";
 class Auth extends React.Component {
@@ -36,7 +36,17 @@ class Auth extends React.Component {
         const { code, message } = error;
         console.log(message);
         console.log(code);
-        console.log("coucou bin");
+        Alert.alert(
+          "E-mail ou mot de passe erroné",
+          this.state.pseudo,
+          [
+            {
+              text: "OK",
+              onPress: () => this.props.navigation.navigate("Auth")
+            }
+          ],
+          { cancelable: false }
+        );
         // For details of error codes, see the docs
         // The message contains the default Firebase string
         // representation of the error

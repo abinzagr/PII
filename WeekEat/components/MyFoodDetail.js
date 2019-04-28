@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-class FoodDetail extends React.Component {
+class MyFoodDetail extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -38,37 +38,12 @@ class FoodDetail extends React.Component {
               {this.props.navigation.state.params.heureF}:
               {this.props.navigation.state.params.minutesF}
             </Text>
-            <View style={styles.chat}>
-              <Image
-                source={require("../images/chat.png")}
-                //resizeMode={Image.resizeMode.contain}
-                style={{
-                  height: 20,
-                  width: 20,
-                  tintColor: "black",
-                  marginLeft: 40
-                }}
-              />
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("Auth")}
-              >
-                <Text>Contacter l'hôte</Text>
-              </TouchableOpacity>
-            </View>
           </View>
           <View style={styles.desc}>
             <Text style={styles.text_desc}>Description du plat:</Text>
             <Text style={styles.text_description}>
               {this.props.navigation.state.params.description}
             </Text>
-          </View>
-          <View style={styles.desc}>
-            <TouchableOpacity
-              style={styles.buttonReserver}
-              onPress={() => this.props.navigation.navigate("Auth")}
-            >
-              <Text style={styles.buttonTextReserver}>Reserver</Text>
-            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -100,20 +75,6 @@ const styles = StyleSheet.create({
   },
   text_desc: { fontSize: 16, fontWeight: "bold", marginLeft: 5 },
   chat: { marginLeft: 130 },
-  text_description: { fontSize: 14, marginLeft: 5 },
-  buttonTextReserver: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#ffffff",
-    textAlign: "center",
-    paddingVertical: 10
-  },
-  buttonReserver: {
-    backgroundColor: "rgb(255,90,95)",
-    width: 130,
-    borderRadius: 15,
-    marginVertical: 115,
-    marginLeft: 130
-  }
+  text_description: { fontSize: 14, marginLeft: 5 }
 });
-export default FoodDetail;
+export default MyFoodDetail;

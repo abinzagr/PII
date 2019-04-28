@@ -12,9 +12,12 @@ import InscriptionFacebook from "../components/InscriptionFacebook";
 import FoodDetail from "../components/FoodDetail";
 import Propose from "../components/Propose";
 import Chat from "../Chat/Chat";
-
-//import Deconnexion from "../compoments/Deconnexion";
-// Import React Navigation
+import Profil from "../Chat/Profil";
+import Apropos from "../Chat/Apropos";
+import Charte from "../Chat/Charte";
+import Hote from "../Chat/Hote";
+import Conditions from "../Chat/Conditions";
+import MyFoodDetail from "../components/MyFoodDetail";
 import {
   createStackNavigator,
   createSwitchNavigator,
@@ -34,7 +37,13 @@ export const Signed = createBottomTabNavigator(
             title: "WeekEat"
           }
         },
-        FoodDetail: { screen: FoodDetail }
+        FoodDetail: { screen: FoodDetail },
+        MyFoodDetail: { screen: MyFoodDetail },
+        Chat: { screen: Chat },
+        Apropos: { screen: Apropos },
+        Charte: { screen: Charte },
+        Hote: { screen: Hote },
+        Conditions: { screen: Conditions }
       }),
       navigationOptions: {
         headerVisible: false,
@@ -62,8 +71,8 @@ export const Signed = createBottomTabNavigator(
         )
       }
     },
-    Chat: {
-      screen: Chat,
+    Profil: {
+      screen: Profil,
       navigationOptions: {
         headerVisible: false,
         title: "Mon profil",
@@ -121,8 +130,22 @@ export const SignedOut = createBottomTabNavigator(
     Authentification: {
       screen: createStackNavigator({
         Auth: { screen: Auth },
-        Inscription: { screen: Inscription },
-        InscriptionEmail: { screen: InscriptionEmail },
+        Inscription: {
+          screen: Inscription,
+          navigationOptions: {
+            headerVisible: false,
+            headerTitleStyle: { alignSelf: "center" },
+            title: "Inscription"
+          }
+        },
+        InscriptionEmail: {
+          screen: InscriptionEmail,
+          navigationOptions: {
+            headerVisible: false,
+            headerTitleStyle: { alignSelf: "center" },
+            title: "Votre Profil"
+          }
+        },
         InscriptionFacebook: { screen: InscriptionFacebook }
       }),
       navigationOptions: {

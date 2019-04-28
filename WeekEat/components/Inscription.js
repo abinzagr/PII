@@ -28,7 +28,6 @@ export default class Auth extends React.Component {
     //const {secureInput}=this.state;
     return (
       <View style={styles.container}>
-        <Text style={styles.VotreProfil_text}>Votre Profil</Text>
         <Text style={styles.MessageProfile_text}>
           Connectez-vous pour vivre une expérience hors du commun !
         </Text>
@@ -64,19 +63,20 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   VotreProfil_text: {
-    fontSize: 20,
+    fontSize: 23,
     lineHeight: 36,
     fontWeight: "bold",
     paddingHorizontal: 5,
     color: "black"
   },
   MessageProfile_text: {
-    fontSize: 30,
-    lineHeight: 36,
+    fontSize: 20,
+    lineHeight: 30,
     fontWeight: "bold",
     paddingHorizontal: 5,
     color: "black",
-    textAlign: "center"
+    textAlign: "center",
+    marginVertical: 15
   },
   inputBox: {
     backgroundColor: "rgba(255,255,255,0.3)",
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   buttonGoogle: {
-    backgroundColor: "rgb(230,230,230)",
+    backgroundColor: "rgb(255,155,89)",
     width: 300,
     borderRadius: 25,
     marginVertical: 10,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   buttonTextGoogle: {
     fontSize: 16,
     fontWeight: "500",
-    color: "black",
+    color: "#ffffff",
     textAlign: "center",
     paddingVertical: 13
   }

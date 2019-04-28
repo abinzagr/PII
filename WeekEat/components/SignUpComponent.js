@@ -55,7 +55,6 @@ export default class InscriptionEmail extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.VotreProfil_text}>Votre Profil</Text>
           <Text style={styles.MessageProfile_text}>
             Création de votre Compte
           </Text>
@@ -117,23 +116,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  VotreProfil_text: {
-    fontSize: 20,
-    lineHeight: 36,
-    fontWeight: "bold",
-    paddingHorizontal: 5,
-    color: "black"
-  },
   MessageProfile_text: {
     fontSize: 30,
     lineHeight: 36,
     fontWeight: "bold",
     paddingHorizontal: 5,
     color: "black",
-    textAlign: "center"
+    textAlign: "center",
+    marginVertical: 35
   },
   inputBox: {
-    backgroundColor: "rgba(255,255,255,0.3)",
     color: "black",
     width: 300,
     paddingVertical: 20,

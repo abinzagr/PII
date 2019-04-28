@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Picker,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { Icon, CheckBox } from "react-native-elements";
 import Fire from "../Fire";
@@ -101,11 +102,11 @@ export default class Propose extends React.Component {
       adresse: adresse,
       complementAdresse: complementAdresse,
       telephone: telephone,
-      charte: charte
+      charte: charte,
+      userId: Fire.shared.uid
     };
-    Fire.shared.refFood.push(food);
-    /*if (
-      titre === "" ||
+    if (
+      /* titre === "" ||
       description === "" ||
       typePlat === "" ||
       prix === "" ||
@@ -117,7 +118,7 @@ export default class Propose extends React.Component {
       selectedMinutesD === "" ||
       selectedMinutesD === "" ||
       selectedMinutesF === "" ||
-      selectedMinutesF === "" ||
+      selectedMinutesF === "" ||*/
       charte === false
     )
       alert(
@@ -125,7 +126,18 @@ export default class Propose extends React.Component {
       );
     else {
       Fire.shared.refFood.push(food);
-    }*/
+      Alert.alert(
+        "Votre repas a bien été publier !",
+        this.state.pseudo,
+        [
+          {
+            text: "OK",
+            onPress: () => this.props.navigation.navigate("Search")
+          }
+        ],
+        { cancelable: false }
+      );
+    }
   };
 
   componentDidMount() {
